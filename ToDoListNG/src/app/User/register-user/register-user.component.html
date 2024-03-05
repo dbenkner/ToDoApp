@@ -1,0 +1,9 @@
+<div class="registerUserContainer">
+    <div class="registerLine"><span class="lineItem">First Name</span><input [(ngModel)]="newUser.firstName"></div>
+    <div class="registerLine"><span class="lineItem">Last Name</span><input [(ngModel)]="newUser.lastName"></div>
+    <div class="registerLine"><span class="lineItem">Email</span><input [(ngModel)]="newUser.email"></div>
+    <div class="registerLine"><span class="lineItem">User Name</span><input [(ngModel)]="newUser.userName"></div>
+    <div class="registerLine"><span class="lineItem"></span>Password<input [(ngModel)]="newUser.password" type="password"></div>
+    <div class="buttonContainer"><button (click)="createNewUser()">Register</button></div>
+    <div class="message">{{message}}</div>
+</div>

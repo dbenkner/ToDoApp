@@ -1,0 +1,30 @@
+<div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>Name</td>
+                <td><input [(ngModel)]="toDoDTO.name"></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td><input [(ngModel)]="toDoDTO.description"></td>
+            </tr>
+            <tr>
+                <td>Priority</td>
+                <td><select [(ngModel)]="toDoDTO.priority">
+                    <option value=0>Low</option>
+                    <option value=1>Medium</option>
+                    <option value=2>High</option>
+                    <option value=3>Critical</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Date Started</td>
+                <td><input [(ngModel)]="toDoDTO.dateStarted" type="date"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btnContainer">
+        <button class="btn btn-primary" (click)="newToDo()">Add Task</button>
+    </div>
+</div>

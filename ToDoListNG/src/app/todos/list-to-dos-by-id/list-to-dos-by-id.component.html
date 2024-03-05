@@ -1,0 +1,32 @@
+<div class="options">
+    <a routerLink="/newtodo">New ToDo</a>
+</div>
+<div class ="tableContainer">
+    <div class="menu"><span>Show Completed?<input [(ngModel)]="showComplete" type="checkbox" (click)="showCompletes()"></span></div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Date Started</th>
+                <th>Date Completed</th>
+                <th>Completed?</th>
+                <th>priority</th>
+                <th>Mark Completed</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let todo of ToDos | complete:showComplete">
+            <td>{{todo.name}}</td>
+            <td>{{todo.description}}</td>
+            <td>{{todo.dateStarted | date:'shortDate'}}</td>
+            <td>{{todo.dateComleted}}</td>
+            <td>{{todo.isComplete? 'YES':'NO' }}</td>
+            <td>{{todo.priority | prioritylevel }}</td>
+            <td>Mark Completed</td>
+            <td><a routerLink="/todo/{{todo.id}}">Details</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

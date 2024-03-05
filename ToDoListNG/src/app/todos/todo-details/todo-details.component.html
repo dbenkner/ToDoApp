@@ -1,0 +1,54 @@
+<table class="table table-sm">
+    <tbody>
+        <tr>
+            <td>Name</td>
+            <td>{{toDo.name}}</td>
+        </tr>
+        <tr>
+            <td>description</td>
+            <td>{{toDo.description}}</td>
+        </tr>
+        <tr>
+            <td>Date Started</td>
+            <td>{{toDo.dateStarted}}</td>
+        </tr>
+        <tr>
+            <td>Date Completed</td>
+            <td>{{toDo.dateComleted}}</td>
+        </tr>
+        <tr>
+            <td>Complete?</td>
+            <td>{{toDo.isComplete? 'Yes':'No'}}</td>
+        </tr>
+        <tr>
+            <td>Priority</td>
+            <td>{{toDo.priority | prioritylevel}}</td>
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="allComplete; else elseBlock">
+    <button class="btn btn-primary" (click)="completeToDo(toDo.id)">Complete</button>
+</div>
+<ng-template #elseBlock>
+    <button class="btn btn-primary" disabled>Complete</button>
+</ng-template>
+<h3>Todo Items/SubTasks</h3>
+<a routerLink="/todoitem/new">Add Item</a>
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Description</td>
+            <td>Complated?</td>
+            <td>Mark Completed</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of toDo.items">
+            <td>{{item.name}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.isComplete? 'Yes':'No'}}</td>
+            <td><button class="btn btn-primary btn-small" (click)="markComplete(item.id)">Complete</button></td>
+        </tr>
+    </tbody>
+</table>
