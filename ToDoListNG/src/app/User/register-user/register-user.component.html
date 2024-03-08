@@ -1,9 +1,25 @@
-<div class="registerUserContainer">
-    <div class="registerLine"><span class="lineItem">First Name</span><input [(ngModel)]="newUser.firstName"></div>
-    <div class="registerLine"><span class="lineItem">Last Name</span><input [(ngModel)]="newUser.lastName"></div>
-    <div class="registerLine"><span class="lineItem">Email</span><input [(ngModel)]="newUser.email"></div>
-    <div class="registerLine"><span class="lineItem">User Name</span><input [(ngModel)]="newUser.userName"></div>
-    <div class="registerLine"><span class="lineItem"></span>Password<input [(ngModel)]="newUser.password" type="password"></div>
-    <div class="buttonContainer"><button (click)="createNewUser()">Register</button></div>
-    <div class="message">{{message}}</div>
+<div class="container container-sm centered border border-dark rounded position-absolute top-50 start-50 translate-middle">
+    <div class="row m-1">
+        <h2 class="text-center">Register new user</h2>
+    </div>
+    <div class="row m-1">
+        <div class="col-4">First Name</div><input class="col-8" [(ngModel)]="newUser.firstName">
+        </div>
+    <div class="row m-1">
+        <div class="col-4">Last Name</div><input class="col-8" [(ngModel)]="newUser.lastName">
+    </div>
+    <div class="row m-1">
+        <div class="col-4">Email</div><input class="col-8" [(ngModel)]="newUser.email">
+    </div>
+    <div class="row m-1">
+        <span class="col-4">User Name</span><input class="col-8" [(ngModel)]="newUser.userName">
+    </div>
+    <div class="row m-1">
+        <span class="col-4">Password</span><input class="col-8" [(ngModel)]="newUser.password">
+    </div>
+    <div class="row m-1">
+        <div class="col-9"></div>
+        <button class="btn btn-primary roundeds col-md-3 ml.md-end" (click)="createNewUser()">Register</button>
+    </div>
+    <div class="row m-1"><p>{{message}}</p></div>
 </div>
