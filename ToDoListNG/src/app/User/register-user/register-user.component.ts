@@ -5,6 +5,7 @@ import { UserService } from 'src/app/User/user.service';
 import { User } from 'src/app/User/user';
 import { newUserDTO } from 'src/app/User/DTOs/newuserDTO';
 import { loginuser } from 'src/app/User/DTOs/loginuser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-user',
@@ -19,7 +20,8 @@ export class RegisterUserComponent {
   constructor(
     private http:HttpClient,
     private userSvc:UserService,
-    private globalSvc:GlobalService
+    private globalSvc:GlobalService,
+    private router: Router
   ){}
   createNewUser():void {
     this.userSvc.registerUser(this.newUser).subscribe({
@@ -28,6 +30,7 @@ export class RegisterUserComponent {
         let loginUser:loginuser = new loginuser();
         this.globalSvc.loggedInUser = res;
         console.debug(this.globalSvc.loggedInUser);
+        this.router.navigate(['/listbyuid']);
       },
       error:(err) => {
         console.error(err);

@@ -1,5 +1,6 @@
-<div class="container-fluid" style="margin-top: 20px;">
-    <div class="container-sm center border border-dark rounded">
+
+<div class="container-fluid" style="margin-top: 20px;" (keyup.enter)="logOn()">
+    <div class="container-sm center border border-dark rounded position-absolute top-50 start-50 translate-middle">
         <div class="row center continer-xs gy-3">
             <div class="col">Username:</div>
             <input class="col" [(ngModel)]="loginUser.username" type="text">
@@ -11,7 +12,7 @@
         <div class="row" style="margin-top: 1em;">
             <div class="col"></div>
             <div class="col-5">
-                <button class="btn btn-primary btn-small rounded" (click)="logOn()">Log On</button>
+                <button class="btn btn-primary btn-small rounded" type="submit" (click)="logOn()">Log On</button>
             </div>
         </div>
         <div class="message">{{message}}</div>
