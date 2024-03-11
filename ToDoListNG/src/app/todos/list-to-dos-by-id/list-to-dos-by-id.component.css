@@ -1,0 +1,14 @@
+.blue-bg {
+    
+    --bs-table-bg: blue;
+    --bs-table-color:white;
+}
+.yellow-bg{
+    --bs-table-bg: yellow;
+}
+.orange-bg{
+    --bs-table-bg: orange;
+}
+.red-bg{
+    --bs-table-bg: red;
+}

@@ -6,7 +6,7 @@ export class ToDo {
     name:string = "";
     description?:string;
     dateStarted!: Date;
-    dateComleted?:Date;
+    dateCompleted?:Date;
     isComplete:Boolean = false;
     priority: number = 2;
     userId: number = 0;

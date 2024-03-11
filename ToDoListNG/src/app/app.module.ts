@@ -15,6 +15,7 @@ import { PrioritylevelPipe } from './todos/prioritylevel.pipe';
 import { TodoDetailsComponent } from './todos/todo-details/todo-details.component';
 import { NewTodoItemComponent } from './todoitems/new-todo-item/new-todo-item.component';
 import { NavComponent } from './core/nav/nav.component';
+import { TodoBgPipe } from './todos/todo-bg.pipe';
 
 
 const startupServiceFactory = (appinit: AppInitService) => {
@@ -33,7 +34,8 @@ const startupServiceFactory = (appinit: AppInitService) => {
     PrioritylevelPipe,
     TodoDetailsComponent,
     NewTodoItemComponent,
-    NavComponent
+    NavComponent,
+    TodoBgPipe
   ],
   imports: [
     BrowserModule,

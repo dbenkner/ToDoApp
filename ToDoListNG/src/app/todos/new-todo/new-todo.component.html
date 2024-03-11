@@ -1,30 +1,27 @@
-<div>
-    <table class="table">
-        <tbody>
-            <tr>
-                <td>Name</td>
-                <td><input [(ngModel)]="toDoDTO.name"></td>
-            </tr>
-            <tr>
-                <td>Description</td>
-                <td><input [(ngModel)]="toDoDTO.description"></td>
-            </tr>
-            <tr>
-                <td>Priority</td>
-                <td><select [(ngModel)]="toDoDTO.priority">
+<app-nav></app-nav>
+<div class="container container-sm border border-dark rounded mt-3" style="width:600px;">
+    <div class="row m-2">
+        <span class="col-3">Name</span>
+                <input class="col-9 border border-dark rounded" [(ngModel)]="toDoDTO.name">
+            </div>
+            <div class="row m-2">
+            <span class="col-3">Description</span>
+            <input class="col-9 border border-dark rounded" [(ngModel)]="toDoDTO.description">
+            </div>
+            <div class="row m-2">
+                <span class="col-3">Priority</span>
+                <select class="col-9 border border-dark rounded" [(ngModel)]="toDoDTO.priority">
                     <option value=0>Low</option>
                     <option value=1>Medium</option>
                     <option value=2>High</option>
                     <option value=3>Critical</option>
-                </select></td>
-            </tr>
-            <tr>
-                <td>Date Started</td>
-                <td><input [(ngModel)]="toDoDTO.dateStarted" type="date"></td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="btnContainer">
-        <button class="btn btn-primary" (click)="newToDo()">Add Task</button>
+                </select>
+            </div>
+            <div class="row m-2">
+                <span class="col-3">Date Started</span>
+                <input class="col-9 border border-dark rounded" [(ngModel)]="toDoDTO.dateStarted" type="date">
+            </div>
+    <div class="container mb-2 d-flex justify-content-end">
+            <button class="btn btn-primary mt-3 mb-2" (click)="newToDo()">Add Task</button>
     </div>
 </div>

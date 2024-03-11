@@ -1,9 +1,9 @@
 <app-nav></app-nav>
-<div class="options">
-    <a routerLink="/newtodo">New ToDo</a>
-</div>
-<div class ="tableContainer">
-    <div class="menu"><span>Show Completed?<input [(ngModel)]="showComplete" type="checkbox" (click)="showCompletes()"></span></div>
+<div class ="container">
+    <div class="container">
+        <a class="link-underline link-underline-opacity-0" routerLink="/newtodo">New ToDo</a>
+    </div>
+    <div class="container"><span class="me-2">Show Completed?<input [(ngModel)]="showComplete" type="checkbox" (click)="showCompletes()"></span></div>
     <table class="table">
         <thead>
             <tr>
@@ -13,21 +13,19 @@
                 <th>Date Completed</th>
                 <th>Completed?</th>
                 <th>priority</th>
-                <th>Mark Completed</th>
                 <th>Details</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let todo of ToDos | complete:showComplete">
-            <td>{{todo.name}}</td>
-            <td>{{todo.description}}</td>
-            <td>{{todo.dateStarted | date:'shortDate'}}</td>
-            <td>{{todo.dateComleted}}</td>
-            <td>{{todo.isComplete? 'YES':'NO' }}</td>
-            <td>{{todo.priority | prioritylevel }}</td>
-            <td>Mark Completed</td>
-            <td><a routerLink="/todo/{{todo.id}}">Details</a></td>
-        </tr>
+            <tr *ngFor="let todo of ToDos | complete:showComplete" class="{{todo.priority |todoBg}}">
+            <td class="p-3">{{todo.name}}</td>
+            <td class="p-3">{{todo.description}}</td>
+            <td class="p-3">{{todo.dateStarted | date:'shortDate'}}</td>
+            <td class="p-3">{{todo.dateCompleted |date:'shortDate'}}</td>
+            <td class="p-3">{{todo.isComplete? 'YES':'NO' }}</td>
+            <td class="p-3">{{todo.priority | prioritylevel }}</td>
+            <td><a class="btn btn-small btn-secondary" routerLink="/todo/{{todo.id}}">Details</a></td>
+            </tr>
         </tbody>
     </table>
 </div>
