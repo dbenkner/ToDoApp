@@ -13,6 +13,7 @@ import { TodoitemsService } from 'src/app/todoitems/todoitems.service';
 export class TodoDetailsComponent {
   toDo!:ToDo;
   allComplete:boolean = false;
+  toDoItems:any[] = [];
 
   constructor(
     private glovalSvc: GlobalService,
@@ -36,9 +37,11 @@ export class TodoDetailsComponent {
           console.debug(res);
           this.toDoItemSvc.toDoId = res.id;
           for(let item of this.toDo.items!) {
+            console.log(item.id);
+            item.edit = true;
             if(item.isComplete === false) {
               this.allComplete = false;
-              break;
+              //break;
             }
             else {
               this.allComplete = true;
@@ -66,6 +69,21 @@ export class TodoDetailsComponent {
         next:(res) => {
           console.debug(res);
           this.ngOnInit();
+        },
+        error:(err) => {
+          console.error(err);
+        }
+      });
+    }
+    editToDo(id:number):void{
+      console.log(this.toDo.items?.find(x => x.id == id)?.edit);
+      this.toDo.items!.find(x => x.id == id)!.edit = false;
+    }
+    submitToDoItem(id:number):void {
+      this.toDoItemSvc.editToDoItem(this.toDo.items?.find(x => x.id == id)!).subscribe({
+        next:(res) => {
+          console.log(res);
+          this.toDo.items!.find(x => x.id == id)!.edit = true;
         },
         error:(err) => {
           console.error(err);

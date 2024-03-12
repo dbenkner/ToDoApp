@@ -16,6 +16,8 @@ import { TodoDetailsComponent } from './todos/todo-details/todo-details.componen
 import { NewTodoItemComponent } from './todoitems/new-todo-item/new-todo-item.component';
 import { NavComponent } from './core/nav/nav.component';
 import { TodoBgPipe } from './todos/todo-bg.pipe';
+import { EditEnableComponent } from './core/edit-enable/edit-enable.component';
+import { EditEnablePipe } from './core/edit-enable.pipe';
 
 
 const startupServiceFactory = (appinit: AppInitService) => {
@@ -35,7 +37,9 @@ const startupServiceFactory = (appinit: AppInitService) => {
     TodoDetailsComponent,
     NewTodoItemComponent,
     NavComponent,
-    TodoBgPipe
+    TodoBgPipe,
+    EditEnableComponent,
+    EditEnablePipe
   ],
   imports: [
     BrowserModule,

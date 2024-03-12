@@ -22,4 +22,7 @@ export class TodoitemsService {
   completeToDoItem(id:number) : Observable<ToDoItems>{
     return this.http.put(`${this.url}/comp/${id}`, id) as Observable<ToDoItems>;
   }
+  editToDoItem(ToDoItem:ToDoItems) : Observable<any>{
+    return this.http.put(`${this.url}/edit/${ToDoItem.id}`, ToDoItem) as Observable<any>;
+  }
 }

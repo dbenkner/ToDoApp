@@ -1,9 +1,11 @@
 <app-nav></app-nav>
 <div class ="container">
     <div class="container">
-        <a class="link-underline link-underline-opacity-0" routerLink="/newtodo">New ToDo</a>
+        
     </div>
-    <div class="container"><span class="me-2">Show Completed?<input [(ngModel)]="showComplete" type="checkbox" (click)="showCompletes()"></span></div>
+    <div class="container m-2"><a class="btn btn-sm btn-secondary m-1" routerLink="/newtodo">New ToDo</a>
+        <span class="my-2 p-2">Show Completed?<input class="ms-2"[(ngModel)]="showComplete" type="checkbox" (click)="showCompletes()"></span>
+    </div>
     <table class="table">
         <thead>
             <tr>

@@ -4,4 +4,5 @@ export class ToDoItems {
     description?: string;
     isComplete:boolean = false;
     toDoId:number = 0;
+    edit:boolean = false;
 }

@@ -7,7 +7,7 @@
             <td>{{toDo.name}}</td>
         </tr>
         <tr>
-            <td>description</td>
+            <td>Description</td>
             <td>{{toDo.description}}</td>
         </tr>
         <tr>
@@ -41,16 +41,19 @@
         <tr>
             <td>Name</td>
             <td>Description</td>
-            <td>Complated?</td>
+            <td>Completed?</td>
             <td>Mark Completed</td>
+            <td>Edit</td>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let item of toDo.items">
-            <td>{{item.name}}</td>
-            <td>{{item.description}}</td>
+            <td><input [(ngModel)]="item.name" [disabled]="item.edit"></td>
+            <td><input [(ngModel)]="item.description" [disabled]="item.edit"></td>
             <td>{{item.isComplete? 'Yes':'No'}}</td>
             <td><button class="btn btn-primary btn-small" (click)="markComplete(item.id)">Complete</button></td>
+            <td *ngIf="item.edit; else elseBlock"><button class="btn btn-primary btn-small" (click)="editToDo(item.id)">Edit</button></td>
+            <ng-template #elseBlock><td><button class="btn btn-primary btn-small" (click)="submitToDoItem(item.id)">Submit</button></td></ng-template>
         </tr>
     </tbody>
 </table>
