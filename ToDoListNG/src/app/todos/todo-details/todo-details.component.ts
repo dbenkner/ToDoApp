@@ -4,6 +4,7 @@ import { ActivatedRoute, Route, Router, RouterLink } from '@angular/router';
 import { GlobalService } from 'src/app/core/global.service';
 import { TodoService } from '../todo.service';
 import { TodoitemsService } from 'src/app/todoitems/todoitems.service';
+import { toDoItemDTO } from 'src/app/todoitems/DTOs/todoitemDTO';
 
 @Component({
   selector: 'app-todo-details',
@@ -14,6 +15,8 @@ export class TodoDetailsComponent {
   toDo!:ToDo;
   allComplete:boolean = false;
   toDoItems:any[] = [];
+  newItemBtn:boolean = false;
+  newItemDTO: toDoItemDTO = new toDoItemDTO();
 
   constructor(
     private glovalSvc: GlobalService,
@@ -84,6 +87,22 @@ export class TodoDetailsComponent {
         next:(res) => {
           console.log(res);
           this.toDo.items!.find(x => x.id == id)!.edit = true;
+        },
+        error:(err) => {
+          console.error(err);
+        }
+      });
+    }
+    newItem():void {
+      this.newItemBtn = true;
+    }
+    submitNewItem():void {
+      this.newItemDTO.toDoId = this.toDo.id;
+      this.toDoItemSvc.newToDoItem(this.newItemDTO).subscribe({
+        next:(res) => {
+          console.log(res);
+          this.newItemBtn = false;
+          this.ngOnInit();
         },
         error:(err) => {
           console.error(err);
