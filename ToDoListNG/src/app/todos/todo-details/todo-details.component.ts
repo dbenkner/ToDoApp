@@ -17,6 +17,7 @@ export class TodoDetailsComponent {
   toDoItems:any[] = [];
   newItemBtn:boolean = false;
   newItemDTO: toDoItemDTO = new toDoItemDTO();
+  editToDo: Boolean = false;
 
   constructor(
     private glovalSvc: GlobalService,
@@ -78,7 +79,22 @@ export class TodoDetailsComponent {
         }
       });
     }
-    editToDo(id:number):void{
+    editToDoBtn():void {
+      this.editToDo = true;
+    }
+    submitToDoEdit():void{
+      this.toDoSvc.editToDo(this.toDo).subscribe({
+        next:(res)=>{
+          console.log(res);
+          this.editToDo = false;
+        },
+        error:(err) => {
+          console.error(err),
+          this.editToDo = false;
+        }
+      });
+    }
+    editToDoItem(id:number):void{
       console.log(this.toDo.items?.find(x => x.id == id)?.edit);
       this.toDo.items!.find(x => x.id == id)!.edit = false;
     }

@@ -1,14 +1,21 @@
 <app-nav></app-nav>
 <div class="container">
-<table class="table table-sm">
+<table class="table">
     <tbody>
         <tr>
             <td>Name</td>
-            <td>{{toDo.name}}</td>
+            <td *ngIf="editToDo; else elseName"><input [(ngModel)]="toDo.name" class="rounded w-100"></td>
+            <ng-template #elseName><td>{{toDo.name}}</td></ng-template>
         </tr>        
         <tr>
             <td>Priority</td>
-            <td>{{toDo.priority | prioritylevel}}</td>
+            <td *ngIf="editToDo; else elsePriority"><select class="border border-dark rounded" [(ngModel)]="toDo.priority">
+                <option [ngValue]=0>Low</option>
+                <option [ngValue]=1>Medium</option>
+                <option [ngValue]=2>High</option>
+                <option [ngValue]=3>Critical</option>
+            </select></td>
+            <ng-template #elsePriority><td>{{toDo.priority | prioritylevel}}</td></ng-template>
         </tr>
 
         <tr>
@@ -25,17 +32,22 @@
         </tr>        
         <tr>
             <td>Description</td>
-            <td>{{toDo.description}}</td>
+            <td *ngIf="editToDo; else elseDesc"><textarea [(ngModel)]="toDo.description" class="rounded w-100"></textarea></td>
+            <ng-template #elseDesc><td>{{toDo.description}}</td></ng-template>
         </tr>
 
     </tbody>
 </table>
-<div *ngIf="allComplete; else elseBlock">
-    <button class="btn btn-primary" (click)="completeToDo(toDo.id)">Complete</button>
+<div>
+    <span *ngIf="allComplete; else elseBlock">
+        <button class="btn btn-primary" (click)="completeToDo(toDo.id)">Complete</button>
+    </span>
+    <ng-template #elseBlock>
+        <button class="btn btn-primary" disabled>Complete</button>
+    </ng-template>
+    <span *ngIf="!editToDo; else elseEditBtn"><button class="btn btn-primary btn-small ms-2" (click)="editToDoBtn()">Edit</button></span>
+    <ng-template #elseEditBtn><button class="btn btn-primary btn-small ms-2" (click)="submitToDoEdit()">Submit</button></ng-template>
 </div>
-<ng-template #elseBlock>
-    <button class="btn btn-primary" disabled>Complete</button>
-</ng-template>
 <h3>Todo Items/SubTasks</h3>
 <button class="btn btn-primary btn-small" (click)="newItem()">Add New Item</button>
 <table class="table table-sm">
@@ -54,7 +66,7 @@
             <td><input class="rounded" [(ngModel)]="item.description" [disabled]="item.edit"></td>
             <td class="text-center">{{item.isComplete? 'Yes':'No'}}</td>
             <td><button class="btn btn-primary btn-small" (click)="markComplete(item.id)">Complete</button></td>
-            <td *ngIf="item.edit; else elseBlock"><button class="btn btn-primary btn-small" (click)="editToDo(item.id)">Edit</button></td>
+            <td *ngIf="item.edit; else elseBlock"><button class="btn btn-primary btn-small" (click)="editToDoItem(item.id)">Edit</button></td>
             <ng-template #elseBlock><td><button class="btn btn-primary btn-small" (click)="submitToDoItem(item.id)">Submit</button></td></ng-template>
         </tr>
         <tr *ngIf="newItemBtn">

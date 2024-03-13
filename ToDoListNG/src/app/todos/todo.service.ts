@@ -24,4 +24,7 @@ export class TodoService {
   markComplete(id:number):Observable<ToDo>{
     return this.http.put(`${this.url}/comp/${id}`, id) as Observable<ToDo>
   }
+  editToDo(toDo:ToDo) :Observable<any>{
+    return this.http.put(`${this.url}/${toDo.id}`, toDo) as Observable<any>;
+  }
 }
