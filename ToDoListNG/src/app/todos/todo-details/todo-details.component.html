@@ -63,7 +63,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let item of toDo.items">
+        <tr *ngFor="let item of toDo.items" [ngClass]="item.isComplete === true ? 'green-bg' : '' ">
             <td><input class="rounded mt-1" [(ngModel)]="item.name" [disabled]="item.edit"></td>
             <td><input class="rounded mt-1" [(ngModel)]="item.description" [disabled]="item.edit"></td>
             <td class="text-center">{{item.isComplete? 'Yes':'No'}}</td>

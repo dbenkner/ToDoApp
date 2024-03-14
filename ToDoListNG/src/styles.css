@@ -9,3 +9,6 @@
 .medium-box{
     width:600px;
 }
+.green-bg{
+    --bs-table-bg: green;
+}
