@@ -20,11 +20,13 @@
 
         <tr>
             <td>Date Started</td>
-            <td>{{toDo.dateStarted | date : 'shortDate'}}</td>
+            <td *ngIf="editToDo; else elseDateStarted"><input [(ngModel)]="toDo.dateStarted" type="date"></td>
+            <ng-template #elseDateStarted><td>{{toDo.dateStarted | date : 'shortDate'}}</td></ng-template>
         </tr>
         <tr>
             <td>Date Completed</td>
-            <td>{{toDo.dateCompleted | date : 'shortDate'}}</td>
+            <td *ngIf="editToDo && toDo.isComplete; else elseDateCompleted"><input [(ngModel)]="toDo.dateCompleted" type="date"></td>
+            <ng-template #elseDateCompleted><td>{{toDo.dateCompleted | date : 'shortDate'}}</td></ng-template>
         </tr>
         <tr>
             <td>Complete?</td>
