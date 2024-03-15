@@ -1,25 +1,23 @@
 <app-nav></app-nav>
 <div class ="container">
-    <div class="container">
-        
-    </div>
     <div class="container m-2"><a class="btn btn-sm btn-secondary m-1" routerLink="/newtodo">New ToDo</a>
         <span class="my-2 p-2">Show Completed?<input class="ms-2"[(ngModel)]="showComplete" type="checkbox" (click)="showCompletes()"></span>
+        <span>Search:<input [(ngModel)]="search" class="ms-2 border border-dark rounded"></span>
     </div>
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Date Started</th>
+                <th><button class="btn border-0 m-0 p-0 fw-bold" (click)="sort('name')">Name</button></th>
+                <th><button class="btn border-0 m-0 p-0 fw-bold" (click)="sort('description')">Description</button></th>
+                <th><button class="btn border-0 m-0 p-0 fw-bold" (click)="sort('dateStarted')">Date Started</button></th>
                 <th>Date Completed</th>
                 <th>Completed?</th>
-                <th>Priority</th>
+                <th><button class="btn border-0 m-0 p-0 fw-bold" (click)="sort('priority')">Priority</button>></th>
                 <th>Details</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let todo of ToDos | complete:showComplete" class="{{todo.priority |todoBg}}">
+            <tr *ngFor="let todo of ToDos | searchToDos:search | complete:showComplete | sort:sortAsc:sorting" class="{{todo.priority |todoBg}}">
             <td class="p-3">{{todo.name}}</td>
             <td class="p-3">{{todo.description | slice: 0:50}}<span class="m-0 p-0" *ngIf="todo.description != undefined &&  todo.description!.length > 50">...</span></td>
             <td class="p-3">{{todo.dateStarted | date:'shortDate'}}</td>

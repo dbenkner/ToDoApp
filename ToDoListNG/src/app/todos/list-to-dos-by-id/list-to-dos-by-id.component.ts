@@ -14,7 +14,9 @@ import { FormsModule } from '@angular/forms';
 export class ListToDosByIdComponent {
   ToDos:ToDo[] = [];
   showComplete:boolean = false;
-
+  search:string = "";
+  sortAsc:boolean = true;
+  sorting: string = "name";
   constructor(private http:HttpClient, private globalSvc:GlobalService, private toDoSvc:TodoService, private route:Router ) {}
 
   ngOnInit() {
@@ -41,5 +43,15 @@ export class ListToDosByIdComponent {
         console.error(err);
       },
     });
+  }
+  sort(sortBy:string):void{
+    if(this.sorting == sortBy) {
+      this.sortAsc = !this.sortAsc;
+    }
+    else {
+      this.sortAsc = true;
+      this.sorting = sortBy;
+    }
+    console.log(this.sortAsc);
   }
 }

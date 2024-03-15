@@ -18,6 +18,9 @@ import { NavComponent } from './core/nav/nav.component';
 import { TodoBgPipe } from './todos/todo-bg.pipe';
 import { EditEnableComponent } from './core/edit-enable/edit-enable.component';
 import { EditEnablePipe } from './core/edit-enable.pipe';
+import { SearchPipe } from './core/search.pipe';
+import { SearchToDosPipe } from './todos/search-to-dos.pipe';
+import { SortPipe } from './core/sort.pipe';
 
 
 const startupServiceFactory = (appinit: AppInitService) => {
@@ -39,7 +42,10 @@ const startupServiceFactory = (appinit: AppInitService) => {
     NavComponent,
     TodoBgPipe,
     EditEnableComponent,
-    EditEnablePipe
+    EditEnablePipe,
+    SearchPipe,
+    SearchToDosPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,
