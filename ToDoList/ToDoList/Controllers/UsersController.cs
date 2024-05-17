@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -83,6 +84,7 @@ namespace ToDoList.Controllers
             {
                 return BadRequest("Username Already Exists!");
             }
+            if (!ValidateEmail(registerUser.Email)) return BadRequest("Invalid Email");
             using var hmac = new HMACSHA512();
             User user = new User()
             {
@@ -161,6 +163,15 @@ namespace ToDoList.Controllers
         {
             return _context.Users.Any(e => e.Id == id);
         }
+        private bool ValidateEmail(string email)
+        {
+            if (email == null) return false;
+            string pattern = "^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})$";
+            Regex regex = new Regex(pattern);
+            if (regex.IsMatch(email)) return true;
+            return false;
+        }
+
         private async Task<bool> UserExists(string username)
         {
             return await _context.Users.AnyAsync(U => U.UserName == username.ToLower());  
