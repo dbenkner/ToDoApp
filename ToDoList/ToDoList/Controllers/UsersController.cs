@@ -85,6 +85,7 @@ namespace ToDoList.Controllers
                 return BadRequest("Username Already Exists!");
             }
             if (!ValidateEmail(registerUser.Email)) return BadRequest("Invalid Email");
+            if (!ValidatePassword(registerUser.Password)) return BadRequest("Invalid Password");
             using var hmac = new HMACSHA512();
             User user = new User()
             {
@@ -104,7 +105,7 @@ namespace ToDoList.Controllers
         public async Task<ActionResult<User>> LogInUser(LogInUserDTO logInUser)
         
         {
-            var user  = _context.Users.SingleOrDefault(u => u.UserName == logInUser.Username);
+            var user  = await _context.Users.SingleOrDefaultAsync(u => u.UserName == logInUser.Username);
             if (user == null)
             {
                 return Unauthorized("Invalid Login");
@@ -171,7 +172,13 @@ namespace ToDoList.Controllers
             if (regex.IsMatch(email)) return true;
             return false;
         }
-
+        private bool ValidatePassword(string password)
+        {
+            if (password == null) return false;
+            string pattern = "([a-zA-Z0-9`~!@#$%^&*<>()?.,]{8,})$";
+            Regex regex = new Regex(pattern);
+            return regex.IsMatch(password);
+        }
         private async Task<bool> UserExists(string username)
         {
             return await _context.Users.AnyAsync(U => U.UserName == username.ToLower());  
