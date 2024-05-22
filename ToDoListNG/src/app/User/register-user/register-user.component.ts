@@ -18,6 +18,7 @@ export class RegisterUserComponent {
   user:User = new User();
   newUser: newUserDTO = new newUserDTO();
   message:string = "";
+  warnClass: string = "";
 
   constructor(
     private http:HttpClient,
@@ -34,11 +35,13 @@ export class RegisterUserComponent {
     if(this.validateUserEmail(this.newUser.email) === false) {
       this.message = "Enter a valid email address!";
       console.error("Invalid Email");
+      this.warnClass = "bg-warning text dark border border-danger border-3 rounded";
       return;
     }
     if(!this.validateUserPassword(this.newUser.password)) {
-      this.message = "Passowrd must contain 1 lowercase letter, 1 capital letter, 1 number, and 1 special charachter!";
+      this.message = "Password must contain 1 lowercase letter, 1 capital letter, 1 number, and 1 special charachter!";
       console.error("Invalid Password");
+      this.warnClass = "bg-warning text dark border border-danger border-3 rounded";
       return;
     }
     this.userSvc.registerUser(this.newUser).subscribe({
