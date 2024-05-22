@@ -90,7 +90,7 @@ namespace ToDoList.Controllers
             {
                 FirstName = registerUser.FirstName,
                 LastName = registerUser.LastName,
-                Email = registerUser.Email,
+                Email = registerUser.Email.ToLower(),
                 UserName = registerUser.Username.ToLower(),
                 isAdmin = registerUser.isAdmin,
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerUser.Password)),

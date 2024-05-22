@@ -2,24 +2,24 @@
     <div class="row m-1">
         <h2 class="text-center">Register new user</h2>
     </div>
-    <div class="row m-1">
-        <div class="col-4">First Name</div><input class="col-8" [(ngModel)]="newUser.firstName">
+        <div class="row m-1">
+            <div class="col-4">First Name</div><input class="col-8" [(ngModel)]="newUser.firstName">
+            </div>
+        <div class="row m-1">
+            <div class="col-4">Last Name</div><input class="col-8" [(ngModel)]="newUser.lastName">
         </div>
-    <div class="row m-1">
-        <div class="col-4">Last Name</div><input class="col-8" [(ngModel)]="newUser.lastName">
-    </div>
-    <div class="row m-1">
-        <div class="col-4">Email</div><input class="col-8" [(ngModel)]="newUser.email" type="email">
-    </div>
-    <div class="row m-1">
-        <span class="col-4">User Name</span><input class="col-8" [(ngModel)]="newUser.userName">
-    </div>
-    <div class="row m-1">
-        <span class="col-4">Password</span><input class="col-8" type="password" [(ngModel)]="newUser.password">
-    </div>
-    <div class="row m-1">
-        <div class="col-9"></div>
-        <button class="btn btn-primary roundeds col-md-3 ml.md-end" (click)="createNewUser()">Register</button>
-    </div>
+        <div class="row m-1">
+            <div class="col-4">Email</div><input class="col-8" type="email" [(ngModel)]="newUser.email" type="email">
+        </div>
+        <div class="row m-1">
+            <span class="col-4">User Name</span><input class="col-8" [(ngModel)]="newUser.userName">
+        </div>
+        <div class="row m-1">
+            <span class="col-4">Password</span><input class="col-8" type="password" [(ngModel)]="newUser.password">
+        </div>
+        <div class="row m-1">
+            <div class="col-9"></div>
+            <button class="btn btn-primary roundeds col-md-3 ml.md-end" (click)="createNewUser()">Submit</button>
+        </div>
     <div class="row m-1"><p>{{message}}</p></div>
 </div>

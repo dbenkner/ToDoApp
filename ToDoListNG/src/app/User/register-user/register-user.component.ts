@@ -6,6 +6,7 @@ import { User } from 'src/app/User/user';
 import { newUserDTO } from 'src/app/User/DTOs/newuserDTO';
 import { loginuser } from 'src/app/User/DTOs/loginuser';
 import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validator, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-register-user',
@@ -17,13 +18,24 @@ export class RegisterUserComponent {
   user:User = new User();
   newUser: newUserDTO = new newUserDTO();
   message:string = "";
+
   constructor(
     private http:HttpClient,
     private userSvc:UserService,
     private globalSvc:GlobalService,
     private router: Router
   ){}
+  ngOnInit():void {
+
+
+  }
+
   createNewUser():void {
+    if(this.validateUserEmail(this.newUser.email) === false) {
+      this.message = "Enter a valid email address!";
+      console.error("Invalid Email");
+      return;
+    }
     this.userSvc.registerUser(this.newUser).subscribe({
       next:(res) => {
         console.debug(res);
@@ -37,5 +49,10 @@ export class RegisterUserComponent {
         this.message = "Something went wrong";
       }
     });
+  }
+  validateUserEmail(email:string):Boolean{
+    const re = /([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})$/;
+    let test = re.test(email);
+    return test; 
   }
 }
