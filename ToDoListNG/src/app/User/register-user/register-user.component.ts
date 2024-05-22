@@ -36,6 +36,11 @@ export class RegisterUserComponent {
       console.error("Invalid Email");
       return;
     }
+    if(!this.validateUserPassword(this.newUser.password)) {
+      this.message = "Passowrd must contain 1 lowercase letter, 1 capital letter, 1 number, and 1 special charachter!";
+      console.error("Invalid Password");
+      return;
+    }
     this.userSvc.registerUser(this.newUser).subscribe({
       next:(res) => {
         console.debug(res);
@@ -52,7 +57,10 @@ export class RegisterUserComponent {
   }
   validateUserEmail(email:string):Boolean{
     const re = /([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})$/;
-    let test = re.test(email);
-    return test; 
+    return re.test(email);
+  }
+  validateUserPassword(password: string): Boolean {
+    const re = /([a-zA-Z0-9`~!@#$%^&*<>()?.,]{8,})$/;
+    return re.test(password);
   }
 }
